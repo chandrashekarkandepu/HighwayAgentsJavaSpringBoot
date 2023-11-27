@@ -3,12 +3,10 @@ package com.highwayagents.highway.agents.controllers;
 import com.highwayagents.highway.agents.DTO.LoginDTO;
 import com.highwayagents.highway.agents.models.Contractor;
 import com.highwayagents.highway.agents.services.ContractorService;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("api/v1/contractor")
 public class ContractorController {
 
@@ -27,5 +25,6 @@ public class ContractorController {
        String message= contractorService.loginContractor(loginDTO);
        return message;
     }
+
 
 }
