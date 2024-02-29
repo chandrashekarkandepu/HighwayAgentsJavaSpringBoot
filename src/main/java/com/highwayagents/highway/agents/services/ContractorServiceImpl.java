@@ -60,5 +60,11 @@ public class ContractorServiceImpl implements ContractorService{
         }
     }
 
+    @Override
+    public String getContractorNameByEmailId(String emailId) {
+       Contractor contractor=contractorRepository.findByEmailId(emailId);
+       return contractor.getContractorName();
+    }
+
 
 }

@@ -9,6 +9,8 @@ public interface ContractorService {
 
     String loginContractor(LoginDTO loginDTO);
 
+    String getContractorNameByEmailId(String emailId);
+
 
 
 }

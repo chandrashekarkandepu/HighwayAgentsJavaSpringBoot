@@ -13,4 +13,6 @@ import java.util.Optional;
 public interface ContractorRepository extends JpaRepository<Contractor, Integer> {
     Optional<Contractor> findOneByEmailIdAndPassword(String emailId,String password);
     Contractor findByEmailId(String emailId);
+
+
 }

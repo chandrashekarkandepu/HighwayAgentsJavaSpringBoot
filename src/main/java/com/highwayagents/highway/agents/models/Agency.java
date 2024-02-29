@@ -21,7 +21,7 @@ public class Agency {
     @Column(name = "agency_name")
     private String agencyName;
 
-    @Column(name = "agency_type")
+        @Column(name = "agency_type")
     private String agencyType;
     @Column(name = "agency_email",unique = true)
     private String emailId;

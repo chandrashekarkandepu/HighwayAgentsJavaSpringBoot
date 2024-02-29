@@ -25,6 +25,12 @@ public class ContractorController {
        String message= contractorService.loginContractor(loginDTO);
        return message;
     }
+    @GetMapping("/getNameByEmailId")
+    public String getContractorName(@RequestParam("emailId") String emailId ){
+        return contractorService.getContractorNameByEmailId(emailId);
+
+    }
+
 
 
 }
