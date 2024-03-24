@@ -12,14 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/")
+@RequestMapping("api/v1/worker")
 @CrossOrigin(origins = "http://localhost:3000")
 public class WorkerController {
 
     @Autowired
     private WorkerService workerService;
 
-    @PostMapping("worker/register")
+    @PostMapping("/register")
     public Worker saveWorker(@RequestBody Worker worker){
         Worker savedWorker=workerService.createWorker(worker);
         return savedWorker;

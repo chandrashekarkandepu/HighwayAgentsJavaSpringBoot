@@ -7,26 +7,34 @@ import com.highwayagents.highway.agents.repositories.ContractorRepository;
 import org.springframework.beans.BeanUtils;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
-public class ContractorServiceImpl implements ContractorService{
+public class ContractorServiceImpl implements ContractorService, UserDetailsService {
 
     @Autowired
     private  ContractorRepository contractorRepository;
 
-    @Autowired
+
     private PasswordEncoder passwordEncoder;
+
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
 
 
 
     @Override
     public Contractor createContractor(Contractor contractor) {
         Contractor contractorEntity=new Contractor();
-        contractor.setPassword(this.passwordEncoder.encode(contractor.getPassword()));
+        contractor.setPassword(passwordEncoder.encode(contractor.getPassword()));
         BeanUtils.copyProperties(contractor,contractorEntity);
         contractorRepository.save(contractorEntity);
         return contractor;
@@ -66,5 +74,14 @@ public class ContractorServiceImpl implements ContractorService{
        return contractor.getContractorName();
     }
 
+    @Override
+    public List<Contractor> getAllContractors() {
+        return contractorRepository.findAll();
+    }
 
+
+    @Override
+    public Contractor loadUserByUsername(String username) throws UsernameNotFoundException {
+        return contractorRepository.findByEmailId(username);
+    }
 }
